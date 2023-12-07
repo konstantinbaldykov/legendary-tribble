@@ -1,0 +1,15 @@
+protocol CollageReducerProtocol {
+    mutating func reduce(_ currentState: Collage,
+                         _ action: CollageModification) -> Collage
+}
+
+struct CollageReducer: CollageReducerProtocol {
+    
+    private(set) var shapeReducer: ShapeReducerProtocol
+    private(set) var textReducer: TextReducerProtocol
+    private(set) var stickerReducer: StickerReducer
+    
+    mutating func reduce(_ currentState: Collage,
+                         _ action: CollageModification) -> Collage {
+        
+        var newCollage = currentState
